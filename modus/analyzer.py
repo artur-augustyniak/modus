@@ -37,19 +37,23 @@ class Analyzer(object):
         with open(file_path, 'rb') as f:
             lines = f.readlines()
             for tag, matcher in self.description.iteritems():
-                regex = re.compile(matcher[0])
-                for line_num, line in enumerate(lines):
-                    if re.search(regex, line):
-                        results.append(
-                            (tag,
-                             matcher[0],
-                             mime_type,
-                             path.realpath(file_path),
-                             line_num + 1,
-                             self.fit_line(line),
-                             matcher[1]
-                             )
-                        )
+                #TODO log stderr
+                try:
+                    regex = re.compile(matcher[0])
+                    for line_num, line in enumerate(lines):
+                        if re.search(regex, line):
+                            results.append(
+                                (tag,
+                                matcher[0],
+                                mime_type,
+                                path.realpath(file_path),
+                                line_num + 1,
+                                self.fit_line(line),
+                                matcher[1]
+                                )
+                            )
+                except Exception as e:
+                    print("ERROR %s" % e)
             if results:
                 return results
 

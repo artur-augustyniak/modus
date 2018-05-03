@@ -4,18 +4,21 @@
 from modus.analyzer import Analyzer
 
 
-class BasicXssAnalyzer(Analyzer):
+class ResourceMgmtAnalyzer(Analyzer):
     """
     this is example module
     """
 
     def target_mime_wildcards(self):
-        return ["text/plain*"]
+        """
+        $ file --mime-type file.py 
+        file.py : text/x-python
+        """
+        return ["text/x-python"]
 
     def search_description(self):
         return {
-            "warn:TODO:marker": ("*TODO", "it looks like we got TODO marker."),
-            "warn:FIXME:marker": ("*FIXME", "it looks like we got FIXME marker."),
+            "POSSIBLE RESOURCE LEAK": ("^[^#]*=\sopen*\(", "open without context manager"),
         }
 
 
