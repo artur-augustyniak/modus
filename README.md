@@ -5,7 +5,7 @@ This tool is based on Cody Sixteen work.
 Check his great work:
 https://code610.blogspot.com/ 
 
-
+```
 clear && python -B ./modus.py /tmp/DVWA/ 
 clear && python -B ./modus.py /tmp/DVWA/ | grep -v vendors
 
@@ -39,3 +39,4 @@ optional arguments:
                         ignoring potential extension-content inconsistency
                         Default value is True.
   -l, --list            List available checks.
+```
