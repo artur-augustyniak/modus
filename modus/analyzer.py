@@ -28,8 +28,7 @@ class Analyzer(object):
             out_str = line[:Analyzer.MAX_DISPLAY_LINE_LEN] + "...".lstrip()
         else:
             out_str = line[:-1].lstrip()
-        return re.sub(r'[^\x00-\x7F]+',' ', out_str.replace('\n', ' ').replace('\r', ''))
-            
+        return re.sub(r'[^\x00-\x7F]+', ' ', out_str.replace('\n', ' ').replace('\r', ''))
 
     def scan(self, file_info):
         file_path = file_info[0]
@@ -40,7 +39,7 @@ class Analyzer(object):
             for tag, matcher in self.description.iteritems():
                 # TODO log stderr
                 try:
-                    regex = re.compile(matcher[0])
+                    regex = re.compile(matcher[0],  re.IGNORECASE)
                     for line_num, line in enumerate(lines):
                         if re.search(regex, line):
                             results.append(

@@ -32,7 +32,7 @@ class PHPInclusionAnalyzer(Analyzer):
             desc = "Possible %s" % idx
             pattern = "\s*%s\(.*\$" % (function)
             rules[idx] = (pattern, desc)
-
+        rules["PHP_REMOTE_INCLUSION"] = ("include\(.*HTTP", "remote inc")
         return rules
 
 

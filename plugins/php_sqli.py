@@ -20,22 +20,21 @@ class PHPSqliAnalyzer(Analyzer):
         rules = {}
 
         patterns = [
+            ".*INFILE.*",
             "SELECT\s.*\$",
             "UPDATE\s.*\$",
             "INSERT\s.*\$",
             "DELETE\s.*\$",
-            "select\s.*\$",
-            "update\s.*\$",
-            "insert\s.*\$",
-            "delete\s.*\$",
             "WHERE\s.*\$",
         ]
+        i=0
         for pattern in patterns:
 
-            idx = "PHP_SQLi_%s" % pattern[:1]
+            idx = "PHP_SQLi_%s" % i
             desc = "Possible %s" % idx
             patt = pattern
             rules[idx] = (patt, desc)
+            i+=1
 
         return rules
 

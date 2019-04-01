@@ -18,7 +18,14 @@ class PHPBackdoorAnalyzer(Analyzer):
 
     def search_description(self):
         rules = {
-            "PHP_BASE64_BDOR": ("gzinfl|base64_d.*\(|eval\(", "Possible simple based backdor"),
+            "PHP_BASE64_BDOR": ("gzinfl|base64_d.*\(|eval\(", "Possible simple based backdoor"),
+            "PHP_OBFUSCATION_BDOR": (
+                "\\\\x[0-9A-Fa-f]{2}", 
+                    
+                    "Possible simple obfuscated backdoor"),
+
+
+                
         }
 
         return rules
