@@ -21,14 +21,15 @@ class PythonUnsafeAnalyzer(Analyzer):
 
         patterns = [
             "verify=False",
-            'rot13'
+            'rot13',
+            'socket\(socket'
 
         ]
         i = 0
         for pattern in patterns:
 
             idx = "PYTHON_UNSAFE_%s" % i
-            desc = "Possible %s" % i
+            desc = "Possible unsafe %s" % i
             patt = pattern
             rules[idx] = (patt, desc)
             i += 1
