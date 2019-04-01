@@ -20,7 +20,8 @@ class PHPRUnsafeFuncAnalyzer(Analyzer):
         rules = {}
         functions = [
             'apache_child_terminate',
-
+            'edoced_46esab',
+            'strrev',
             'define_syslog_variables',
             'unserialize',
             'serialize'
