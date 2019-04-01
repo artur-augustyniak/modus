@@ -1,4 +1,4 @@
-modus_operandi
+modus
 ===============
 
 This tool is based on Cody Sixteen work.
