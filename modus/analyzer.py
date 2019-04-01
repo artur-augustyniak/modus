@@ -28,7 +28,8 @@ class Analyzer(object):
             out_str = line[:Analyzer.MAX_DISPLAY_LINE_LEN] + "...".lstrip()
         else:
             out_str = line[:-1].lstrip()
-        return out_str.replace('\n', ' ').replace('\r', '')
+        return re.sub(r'[^\x00-\x7F]+',' ', out_str.replace('\n', ' ').replace('\r', ''))
+            
 
     def scan(self, file_info):
         file_path = file_info[0]
@@ -37,20 +38,20 @@ class Analyzer(object):
         with open(file_path, 'rb') as f:
             lines = f.readlines()
             for tag, matcher in self.description.iteritems():
-                #TODO log stderr
+                # TODO log stderr
                 try:
                     regex = re.compile(matcher[0])
                     for line_num, line in enumerate(lines):
                         if re.search(regex, line):
                             results.append(
                                 (tag,
-                                matcher[0],
-                                mime_type,
-                                path.realpath(file_path),
-                                line_num + 1,
-                                self.fit_line(line),
-                                matcher[1]
-                                )
+                                 matcher[0],
+                                 mime_type,
+                                 path.realpath(file_path),
+                                 line_num + 1,
+                                 self.fit_line(line),
+                                 matcher[1]
+                                 )
                             )
                 except Exception as e:
                     print("ERROR %s" % e)

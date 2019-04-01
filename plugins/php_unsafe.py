@@ -14,11 +14,12 @@ class PHPRUnsafeFuncAnalyzer(Analyzer):
         $ file --mime-type file.php
         file.py : text/x-php
         """
-        return ["text/x-php"]
+        return ["text/x-python"]
 
     def search_description(self):
         rules = {}
         functions = [
+            'rot13',
             'apache_child_terminate',
             'edoced_46esab',
             'strrev',

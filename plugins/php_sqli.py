@@ -28,6 +28,7 @@ class PHPSqliAnalyzer(Analyzer):
             "update\s.*\$",
             "insert\s.*\$",
             "delete\s.*\$",
+            "WHERE\s.*\$",
         ]
         for pattern in patterns:
 
